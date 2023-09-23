@@ -64,17 +64,24 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const logout = () => {
     removeCookie("token");
+    toast.success("Successfully logged out!");
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
   };
 
   useEffect(() => {
     const token = getCookie("token");
     setToken(token);
+
     if (!token || token === "undefined") {
       if (pathname !== "/") {
         router.replace("/");
       }
       return;
-    } else {
+    }
+
+    if (token && pathname === "/") {
       router.replace("/users");
     }
   }, [pathname]);

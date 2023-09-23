@@ -95,9 +95,7 @@ export function UsersDataTable() {
           onClick={() => {
             selectedRows.length
               ? csvExporter.generateCsv(selectedRows)
-              : toast.error(
-                  "There was a problem with your request, no rows were selected.",
-                );
+              : toast.error("No rows selected!");
           }}
         >
           Export .CSV
