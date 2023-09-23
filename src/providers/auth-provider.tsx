@@ -5,6 +5,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import jwt from "jwt-decode";
 import { axiosCore } from "@/lib/axios";
+import toast from "react-hot-toast";
 
 type AuthContextValue = {
   userEmail: String | undefined;
@@ -30,7 +31,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const { getCookie, setCookie, removeCookie } = useCookies();
 
-  const setCurrentUser = async () => {
+  const setCurrentUser = () => {
     const token = getCookie("token");
     if (token) {
       setUserEmail((jwt(token) as any).email);
@@ -38,11 +39,27 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const login = async (email: string, password: string) => {
-    const result = await axiosCore.post("/auth/clinician", {
-      email: "anggaputra@ristek.cs.ui.ac.id",
-      password: "angga1212",
+    const promise = axiosCore.post("/auth/clinician", {
+      email: email,
+      password: password,
     });
-    console.log(result);
+
+    toast.promise(promise, {
+      loading: "Finding you're account...",
+      success: "Your'e successfully logged in!",
+      error: "Something went wrong",
+    });
+
+    await promise
+      .then((res) => {
+        setCookie("token", res.data.token as string);
+        setCurrentUser();
+      })
+      .finally(() => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      });
   };
 
   const logout = () => {
@@ -50,17 +67,17 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   useEffect(() => {
-    setToken(getCookie("token"));
-
-    if (!token && pathname !== "/") {
-      router.replace("/");
+    const token = getCookie("token");
+    setToken(token);
+    if (!token || token === "undefined") {
+      if (pathname !== "/") {
+        router.replace("/");
+      }
       return;
+    } else {
+      router.replace("/users");
     }
-
-    if (!userEmail) {
-      setCurrentUser();
-    }
-  }, [pathname, setUserEmail]);
+  }, [pathname]);
 
   const value = {
     userEmail,
