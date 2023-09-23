@@ -4,8 +4,8 @@ import { useCookies } from "@/hooks";
 import { createContext, useContext, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import jwt from "jwt-decode";
-import { axiosCore } from "@/lib/axios";
 import toast from "react-hot-toast";
+import axios from "@/lib/axios";
 
 type AuthContextValue = {
   userEmail: String | undefined;
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const login = async (email: string, password: string) => {
-    const promise = axiosCore.post("/auth/clinician", {
+    const promise = axios.post("/auth/clinician", {
       email: email,
       password: password,
     });

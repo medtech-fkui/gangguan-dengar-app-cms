@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useCookies } from ".";
-import { axiosCore } from "@/lib/axios";
+import axios from "@/lib/axios";
 
 export const useAxios = () => {
   const { getCookie } = useCookies();
 
   useEffect(() => {
     const token = getCookie("token");
-    const requestIntercept = axiosCore.interceptors.request.use(
+    const requestIntercept = axios.interceptors.request.use(
       (config) => {
         if (!config.headers["Authorization"]) {
           config.headers["Authorization"] = `Bearer ${token}`;
@@ -18,9 +18,9 @@ export const useAxios = () => {
     );
 
     return () => {
-      axiosCore.interceptors.request.eject(requestIntercept);
+      axios.interceptors.request.eject(requestIntercept);
     };
   }, [getCookie]);
 
-  return axiosCore;
+  return axios;
 };

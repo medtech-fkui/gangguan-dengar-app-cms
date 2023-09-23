@@ -1,5 +1,11 @@
+import { UsersDataTable, Wrapper } from "@/components";
+
 const UsersPage = () => {
-  return <div></div>;
+  return (
+    <Wrapper>
+      <UsersDataTable />
+    </Wrapper>
+  );
 };
 
 export default UsersPage;
