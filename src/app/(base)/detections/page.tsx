@@ -1,5 +1,11 @@
+import { DetectionsDataTable, Wrapper } from "@/components";
+
 const Detections = () => {
-  return <div></div>;
+  return (
+    <Wrapper>
+      <DetectionsDataTable />
+    </Wrapper>
+  );
 };
 
 export default Detections;
