@@ -1,5 +1,11 @@
+import { ChildsDataTable, Wrapper } from "@/components";
+
 const ChildsPage = () => {
-  return <div></div>;
+  return (
+    <Wrapper>
+      <ChildsDataTable />
+    </Wrapper>
+  );
 };
 
 export default ChildsPage;

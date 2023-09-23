@@ -41,10 +41,10 @@ export const columns: ColumnDef<User>[] = [
     cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
   },
   {
-    accessorKey: "full_name",
+    accessorKey: "nama_lengkap",
     header: () => <div>Nama Lengkap</div>,
     cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("full_name")}</div>
+      <div className="lowercase">{row.getValue("nama_lengkap")}</div>
     ),
   },
 ];

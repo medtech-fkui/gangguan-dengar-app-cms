@@ -1,0 +1,25 @@
+export type Child = {
+  nama_akun: string;
+  nama_ortu: string;
+  nama_anak: string;
+  tanggal_lahir: Date;
+  umur_dalam_bulan: number;
+  anak_ke: string;
+  pendidikan_ortu: string;
+  alat_bantu: string;
+  tanggal_alat_bantu: Date;
+  bisa_berjalan: boolean;
+  umur_bisa_berjalan: string;
+  rutin_checkup: boolean;
+  konsumsi_jamu: boolean;
+  sakit_saat_hamil: boolean;
+  infeksi_saat_hamil: boolean;
+  cukup_bulan: boolean;
+  berat_normal: boolean;
+  lahir_normal: boolean;
+  sakit_kuning: boolean;
+  rutin_imunisasi: boolean;
+  sering_pilek: boolean;
+  alat_bantu_nafas: boolean;
+  riwayat_kejang: boolean;
+};
