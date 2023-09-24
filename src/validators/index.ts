@@ -1,1 +1,1 @@
-export * from "./auth.valdiation";
+export * from "./auth";

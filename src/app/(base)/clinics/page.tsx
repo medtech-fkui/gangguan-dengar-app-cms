@@ -1,5 +1,11 @@
+import { ClinicsDataTable, Wrapper } from "@/components";
+
 const ClinicsPage = () => {
-  return <div></div>;
+  return (
+    <Wrapper>
+      <ClinicsDataTable />
+    </Wrapper>
+  );
 };
 
 export default ClinicsPage;

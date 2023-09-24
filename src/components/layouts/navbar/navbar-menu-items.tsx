@@ -34,6 +34,14 @@ export const NavbarMenuItems = () => {
       >
         Detections
       </Link>
+      <Link
+        href="/clinics"
+        className={`${
+          pathName === "/clinics" && "text-primary font-semibold"
+        } hover:text-slate-600 cursor-pointer`}
+      >
+        Clinics
+      </Link>
     </section>
   );
 };
