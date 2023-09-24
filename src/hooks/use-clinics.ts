@@ -9,7 +9,6 @@ export const useClinics = () => {
     {
       queryFn: async () => {
         const { data } = await get("/clinician/all/clinic");
-        console.log(data);
         return data;
       },
       refetchOnWindowFocus: false,

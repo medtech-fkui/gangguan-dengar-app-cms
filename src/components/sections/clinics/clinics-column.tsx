@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Clinic } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+import { ClinicsDataTableRowAction } from "./clinics-data-table-row-actions";
 
 export const columns: ColumnDef<Clinic>[] = [
   {
@@ -66,8 +67,8 @@ export const columns: ColumnDef<Clinic>[] = [
       <div className="lowercase">{row.getValue("phone_number") || "-"}</div>
     ),
   },
-  //   {
-  //     id: "actions",
-  //     cell: ({ row }) => <ClinicsRowActions clinic={row.original} />,
-  //   },
+  {
+    id: "actions",
+    cell: ({ row }) => <ClinicsDataTableRowAction clinic={row.original} />,
+  },
 ];
