@@ -13,16 +13,31 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { useClinicsModal } from "@/hooks";
+import { useAxios, useClinics, useUpdateClinicModal } from "@/hooks";
+import toast from "react-hot-toast";
 
-interface ClinicsDataTableRowAction {
+interface ClinicsDataTableRowActionProps {
   clinic: Clinic;
 }
 
 export const ClinicsDataTableRowAction = ({
   clinic,
-}: ClinicsDataTableRowAction) => {
-  const clinicStore = useClinicsModal();
+}: ClinicsDataTableRowActionProps) => {
+  const { refetch } = useClinics();
+  const { delete: onDelete } = useAxios();
+  const modal = useUpdateClinicModal();
+
+  const handleDelete = async () => {
+    const promise = onDelete(`/clinician/clinic/delete/${clinic.id}`);
+    toast.promise(promise, {
+      loading: "Mencari klinik...",
+      success: "Klinik berhasil dihapus!",
+      error: "Terjadi kesalahan",
+    });
+    await promise.then(() => {
+      refetch();
+    });
+  };
 
   return (
     <DropdownMenu>
@@ -35,11 +50,11 @@ export const ClinicsDataTableRowAction = ({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem onClick={() => clinicStore.onOpenForEdit(clinic)}>
+        <DropdownMenuItem onClick={() => modal.onOpenWithClinic(clinic)}>
           Edit
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={handleDelete}>
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>

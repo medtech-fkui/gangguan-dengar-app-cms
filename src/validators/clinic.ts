@@ -13,7 +13,7 @@ const CreateClinicSchema = z.object({
   longitude: z.coerce.number({
     required_error: "Longitude wajib diisi",
   }),
-  phone_number: z.coerce.number().optional(),
+  phone_number: z.coerce.string().optional(),
   children: z.boolean().optional(),
   adults: z.boolean().optional(),
   clinic_type: z.enum(["ALL", "GENERAL", "LINGSIX"], {
@@ -21,4 +21,15 @@ const CreateClinicSchema = z.object({
   }),
 });
 
-export { CreateClinicSchema };
+const UpdateClinicSchema = z.object({
+  name: z.string({}).optional(),
+  address: z.string({}).optional(),
+  latitude: z.coerce.number({}).optional(),
+  longitude: z.coerce.number({}).optional(),
+  phone_number: z.coerce.string().optional(),
+  children: z.boolean().optional(),
+  adults: z.boolean().optional(),
+  clinic_type: z.enum(["ALL", "GENERAL", "LINGSIX"]).optional(),
+});
+
+export { CreateClinicSchema, UpdateClinicSchema };

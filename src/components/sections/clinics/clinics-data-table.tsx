@@ -23,11 +23,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { columns } from "./clinics-column";
-import { useClinics, useClinicsModal } from "@/hooks";
+import { useClinics, useCreateClinicModal } from "@/hooks";
 
 export function ClinicsDataTable() {
   const { data, isFetching } = useClinics();
-  const modal = useClinicsModal();
+  const modal = useCreateClinicModal();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
@@ -63,7 +63,7 @@ export function ClinicsDataTable() {
           }
           className="max-w-sm"
         />
-        <Button onClick={() => modal.onOpenForCreate()}>Create Clinic</Button>
+        <Button onClick={() => modal.onOpen()}>Buat Klinik</Button>
       </div>
       <div className="rounded-md border">
         <Table>

@@ -1,4 +1,3 @@
-import axios from "@/lib/axios";
 import { User } from "@/types";
 import { useQuery } from "react-query";
 import { useAxios } from ".";
@@ -8,7 +7,6 @@ export const useUsers = () => {
   const { data, isFetching } = useQuery<User[], Error>("telingakecilku-users", {
     queryFn: async () => {
       const { data } = await get("/clinician/all/user");
-      console.log(data);
       return data;
     },
     refetchOnWindowFocus: false,

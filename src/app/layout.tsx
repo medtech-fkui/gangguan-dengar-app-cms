@@ -3,7 +3,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider, QueryProvider } from "@/providers";
-import { ClinicsModal, HydrationHandler } from "@/components";
+import {
+  CreateClinicModal,
+  HydrationHandler,
+  UpdateClinicModal,
+} from "@/components";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +27,8 @@ export default function RootLayout({
         <QueryProvider>
           <AuthProvider>
             <HydrationHandler>
-              <ClinicsModal />
+              <CreateClinicModal />
+              <UpdateClinicModal />
               <Toaster />
             </HydrationHandler>
             {children}

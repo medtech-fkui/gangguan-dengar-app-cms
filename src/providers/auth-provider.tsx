@@ -8,8 +8,8 @@ import toast from "react-hot-toast";
 import axios from "@/lib/axios";
 
 type AuthContextValue = {
-  userEmail: String | undefined;
-  token: String | undefined;
+  userEmail: string | undefined;
+  token: string | undefined;
   login: (email: string, password: string) => void;
   logout: () => void;
 };
@@ -26,14 +26,15 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const [userEmail, setUserEmail] = useState<String | undefined>();
-  const [token, setToken] = useState<String | undefined>();
+  const [userEmail, setUserEmail] = useState<string | undefined>();
+  const [token, setToken] = useState<string | undefined>();
 
   const { getCookie, setCookie, removeCookie } = useCookies();
 
   const setCurrentUser = () => {
     const token = getCookie("token");
     if (token) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       setUserEmail((jwt(token) as any).email);
     }
   };
@@ -84,6 +85,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     if (token && pathname === "/") {
       router.replace("/users");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const value = {

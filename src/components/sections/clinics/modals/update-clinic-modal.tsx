@@ -23,67 +23,72 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useAxios, useClinics, useClinicsModal } from "@/hooks";
-import { CreateClinicSchema } from "@/validators";
+import { useAxios, useClinics, useUpdateClinicModal } from "@/hooks";
+import { Clinic } from "@/types";
+import { UpdateClinicSchema } from "@/validators";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { z } from "zod";
 
-export const ClinicsModal = () => {
-  const clinicStore = useClinicsModal();
-  const { post } = useAxios();
+export const UpdateClinicModal = () => {
+  const modal = useUpdateClinicModal();
+
+  const { patch } = useAxios();
   const { refetch } = useClinics();
 
-  const schema =
-    clinicStore.clinic !== undefined ? CreateClinicSchema : CreateClinicSchema;
+  const formValues = {};
 
-  const form = useForm<z.infer<typeof schema>>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      name: "",
-      address: "",
-      longitude: 0,
-      latitude: 0,
-      adults: false,
-      children: false,
-    },
+  if (modal.clinic) {
+    (formValues as Clinic).name = modal.clinic.name;
+    (formValues as Clinic).address = modal.clinic.address;
+    (formValues as Clinic).longitude = modal.clinic.longitude;
+    (formValues as Clinic).latitude = modal.clinic.latitude;
+    (formValues as Clinic).adults = modal.clinic.adults;
+    (formValues as Clinic).children = modal.clinic.children;
+    (formValues as Clinic).clinic_type = modal.clinic.clinic_type;
+    (formValues as Clinic).phone_number = modal.clinic.phone_number;
+  }
+
+  const form = useForm<z.infer<typeof UpdateClinicSchema>>({
+    resolver: zodResolver(UpdateClinicSchema),
+    values: formValues,
   });
 
-  const onSubmit = async (values: z.infer<typeof schema>) => {
-    console.log(values);
-    const promise = post("/clinician/clinic/create", { ...values });
+  const onSubmit = async (values: z.infer<typeof UpdateClinicSchema>) => {
+    const filteredValue = Object.fromEntries(
+      Object.entries(values).filter(([value]) => value !== ""),
+    );
+    const promise = patch(`/clinician/clinic/update/${modal.clinic ?? ""}`, {
+      ...filteredValue,
+    });
     toast.promise(promise, {
-      loading: "Membuat klinik baru",
-      success: "Klinik berhasil dibuat!",
+      loading: "Memperbarui klinik baru",
+      success: "Klinik berhasil diperbarui!",
       error: "Terjadi kesalahan",
     });
-    await promise
-      .catch((e) => {
-        console.log(e);
-      })
-      .finally(() => {
-        setTimeout(() => {
-          refetch();
-          form.reset();
-          clinicStore.onClose();
-        }, 2000);
-      });
+    await promise.finally(() => {
+      setTimeout(() => {
+        refetch();
+        form.reset();
+        modal.onClose();
+      }, 2000);
+    });
   };
 
   const handleClose = () => {
-    clinicStore.onClose();
     form.reset();
+    modal.onClose();
   };
 
   return (
-    <AlertDialog open={clinicStore.isOpen}>
+    <AlertDialog open={modal.isOpen}>
       <AlertDialogContent>
         <AlertDialogHeader className="space-y-2">
           <div className="relative flex flex-col justify-center items-center w-full">
             <div className="flex flex-row justify-center items-center w-full">
-              <h1 className="w-full">Buat Clinic</h1>
+              <h1 className="w-full text-xl font-semibold">Edit Klinik</h1>
               <X
                 size={18}
                 className="relative text-gray-400 cursor-pointer"
