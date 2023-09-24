@@ -82,10 +82,10 @@ export function DetectionsDataTable() {
     });
 
   return (
-    <div className="w-full pt-20 md:pt-16">
+    <div className="w-full pt-20">
       <div className="flex items-center justify-between py-4 gap-x-4">
         <Input
-          placeholder="Filter child name..."
+          placeholder="Filter nama anak..."
           value={(table.getColumn("nama")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("nama")?.setFilterValue(event.target.value)
@@ -96,10 +96,10 @@ export function DetectionsDataTable() {
           onClick={() => {
             selectedRows.length
               ? csvExporter.generateCsv(selectedRows)
-              : toast.error("No rows selected!");
+              : toast.error("Tidak ada baris yang dipilih!");
           }}
         >
-          Export .CSV
+          Ekspor .CSV
         </Button>
       </div>
       <div className="rounded-md border">
@@ -165,6 +165,10 @@ export function DetectionsDataTable() {
         <div className="flex-1 text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length} of{" "}
           {table.getFilteredRowModel().rows.length} row(s) selected.
+        </div>
+        <div className="flex w-[100px] items-center justify-center text-sm text-muted-foreground">
+          Page {table.getState().pagination.pageIndex + 1} of{" "}
+          {table.getPageCount()}
         </div>
         <div className="space-x-2">
           <Button

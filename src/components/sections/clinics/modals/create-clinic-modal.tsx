@@ -76,7 +76,7 @@ export const CreateClinicModal = () => {
         <AlertDialogHeader className="space-y-2">
           <div className="relative flex flex-col justify-center items-center w-full">
             <div className="flex flex-row justify-center items-center w-full">
-              <h1 className="w-full text-xl font-semibold">Buat Klinik</h1>
+              <h1 className="w-full text-2xl font-semibold">Buat Klinik</h1>
               <X
                 size={18}
                 className="relative text-gray-400 cursor-pointer"

@@ -42,8 +42,8 @@ const AuthForm = () => {
   return (
     <Card className="w-full max-w-lg">
       <CardHeader className="text-center">
-        <CardTitle>Gangguan Dengar App</CardTitle>
-        <CardDescription>Content management system panel</CardDescription>
+        <CardTitle>Telinga Kecilku</CardTitle>
+        <CardDescription>Content Management System Panel</CardDescription>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -55,7 +55,10 @@ const AuthForm = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="name@example.com" {...field} />
+                    <Input
+                      placeholder="example@telingakecilku.com"
+                      {...field}
+                    />
                   </FormControl>
                   <FormDescription>
                     This is your clinician email.

@@ -46,9 +46,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     });
 
     toast.promise(promise, {
-      loading: "Finding you're account...",
-      success: "Your'e successfully logged in!",
-      error: "Something went wrong",
+      loading: "Sedang mengautentikasi akun anda...",
+      success: "Anda berhasil login!",
+      error: "Terjadi kesalahan",
     });
 
     await promise
@@ -65,10 +65,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const logout = () => {
     removeCookie("token");
-    toast.success("Successfully logged out!");
+    toast.success("Berhasil logout!");
     setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+      router.replace("/");
+    }, 1500);
   };
 
   useEffect(() => {

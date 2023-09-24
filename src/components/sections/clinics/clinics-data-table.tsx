@@ -53,10 +53,10 @@ export function ClinicsDataTable() {
   });
 
   return (
-    <div className="w-full pt-20 md:pt-16">
+    <div className="w-full pt-20">
       <div className="flex items-center justify-between py-4 gap-x-4">
         <Input
-          placeholder="Filter clinic..."
+          placeholder="Filter klinik..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)

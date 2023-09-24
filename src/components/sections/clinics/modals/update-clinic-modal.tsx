@@ -60,7 +60,7 @@ export const UpdateClinicModal = () => {
     const filteredValue = Object.fromEntries(
       Object.entries(values).filter(([value]) => value !== ""),
     );
-    const promise = patch(`/clinician/clinic/update/${modal.clinic ?? ""}`, {
+    const promise = patch(`/clinician/clinic/update/${modal.clinic?.id}`, {
       ...filteredValue,
     });
     toast.promise(promise, {
@@ -88,7 +88,7 @@ export const UpdateClinicModal = () => {
         <AlertDialogHeader className="space-y-2">
           <div className="relative flex flex-col justify-center items-center w-full">
             <div className="flex flex-row justify-center items-center w-full">
-              <h1 className="w-full text-xl font-semibold">Edit Klinik</h1>
+              <h1 className="w-full text-2xl font-semibold">Edit Klinik</h1>
               <X
                 size={18}
                 className="relative text-gray-400 cursor-pointer"
