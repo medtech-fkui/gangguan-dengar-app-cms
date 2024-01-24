@@ -12,8 +12,9 @@ import {
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Telinga Kecilku | CMS",
-  description: "Telinga Kecilku Content Management System Panel",
+  title: "Telinga Kecilku",
+  description:
+    "Telinga Kecilku merupakan aplikasi untuk mendeteksi dini adanya suspeksi gangguan pendengaran.",
 };
 
 export default function RootLayout({
@@ -22,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={inter.className}>
         <QueryProvider>
           <AuthProvider>
