@@ -76,13 +76,13 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     setToken(token);
 
     if (!token || token === "undefined") {
-      if (pathname !== "/") {
+      if (pathname !== "/" && pathname !== "/login") {
         router.replace("/");
       }
       return;
     }
 
-    if (token && pathname === "/") {
+    if (token && (pathname === "/" || pathname === "/login")) {
       router.replace("/users");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
