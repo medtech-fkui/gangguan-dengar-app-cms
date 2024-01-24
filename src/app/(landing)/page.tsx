@@ -23,7 +23,10 @@ export default function LandingPage() {
 
         <h1 className="font-bold text-3xl text-white mt-6">Telinga Kecilku</h1>
 
-        <div className="bg-[rgb(101,210,175)]/10 py-4 px-6 text-primary rounded-2xl flex items-center gap-4 mt-10">
+        <a
+          href="https://play.google.com/store/apps/details?id=com.imeri.gangguan_dengar_app"
+          className="bg-[rgb(101,210,175)]/10 py-4 px-6 text-primary rounded-2xl flex items-center gap-4 mt-10"
+        >
           <div className="w-5 relative h-5">
             <Image
               src={"/illustrations/google-play.svg"}
@@ -33,7 +36,7 @@ export default function LandingPage() {
             />
           </div>
           <p className="font-semibold">Unduh di Google Playstore</p>
-        </div>
+        </a>
 
         <div className="flex gap-6 md:gap-12 justify-center items-center flex-wrap mt-10 md:mt-20 mx-8 md:mx-16">
           <Image
@@ -113,7 +116,7 @@ export default function LandingPage() {
                 </h3>
               </div>
 
-              <div className="bg-[rgb(180,251,228)]/10 grow flex items-center justify-center rounded-xl text-center text-slate-400 py-6 px-3 text-sm md:text-base">
+              <div className="bg-[rgb(180,251,228)]/10 flex items-center justify-center rounded-xl text-center text-slate-400 py-6 px-3 text-sm md:text-base">
                 {module.desc}
               </div>
             </div>
