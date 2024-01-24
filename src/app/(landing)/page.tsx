@@ -116,7 +116,7 @@ export default function LandingPage() {
                 </h3>
               </div>
 
-              <div className="bg-[rgb(180,251,228)]/10 flex items-center justify-center rounded-xl text-center text-slate-400 py-6 px-3 text-sm md:text-base">
+              <div className="bg-[rgb(180,251,228)]/10 flex flex-1 items-center justify-center rounded-xl text-center text-slate-400 py-6 px-3 text-sm md:text-base">
                 {module.desc}
               </div>
             </div>

@@ -73,7 +73,7 @@ export const HeaderLandingPage = () => {
 
           <div
             className={clsx(
-              "flex flex-col fixed top-0 left-0 h-dvh w-full bg-transparent transition-transform duration-300 z-10 motion-reduce:transition-none",
+              "flex flex-col fixed top-0 left-0 h-full w-full bg-transparent transition-transform duration-300 z-10 motion-reduce:transition-none",
               { ["-translate-x-full"]: !open },
             )}
           >
