@@ -13,7 +13,7 @@ export default function LandingPageLayout({
     <>
       <HeaderLandingPage />
       <main
-        className={`${pjs.className} w-full min-h-screen flex flex-col mx-auto items-center`}
+        className={`${pjs.className} w-full flex flex-col mx-auto items-center`}
       >
         {children}
       </main>

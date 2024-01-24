@@ -73,7 +73,7 @@ export const HeaderLandingPage = () => {
 
           <div
             className={clsx(
-              "flex flex-col fixed top-0 left-0 h-screen w-full bg-transparent transition-transform duration-300 z-10 motion-reduce:transition-none",
+              "flex flex-col fixed top-0 left-0 h-full w-full bg-transparent transition-transform duration-300 z-10 motion-reduce:transition-none",
               { ["-translate-x-full"]: !open },
             )}
           >
@@ -122,13 +122,6 @@ export const HeaderLandingPage = () => {
               </Button>
             </nav>
           </div>
-          <div
-            className={clsx(
-              "absolute top-0 left-0 w-full h-screen transition-opacity duration-500 motion-reduce:transition-none motion-reduce:backdrop-filter-none",
-              { ["opacity-0 -translate-y-full"]: !open },
-              { ["opacity-100 backdrop-blur-sm"]: open },
-            )}
-          ></div>
         </div>
 
         <Button onClick={() => router.push("/login")}>Masuk</Button>
